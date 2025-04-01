@@ -1,12 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import Gallery from './components/Gallery';
 import './App.css';
 
 function App() {
   return (
     <Router>
       <div>
-        {/* Navigation */}
         <header className="header">
           <div className="container">
             <nav className="nav">
@@ -14,26 +14,18 @@ function App() {
                 AI Photo Magic
               </Link>
               <div className="nav-links">
-                <Link to="/" className="nav-link">
-                  Home
-                </Link>
-                <Link to="/gallery" className="nav-link">
-                  Gallery
-                </Link>
-                <Link to="/contact" className="nav-link">
-                  Contact
-                </Link>
+                <Link to="/" className="nav-link">Home</Link>
+                <Link to="/gallery" className="nav-link">Gallery</Link>
+                <Link to="/contact" className="nav-link">Contact</Link>
               </div>
             </nav>
           </div>
         </header>
 
-        {/* Main Content */}
         <main>
           <Routes>
             <Route path="/" element={
               <div>
-                {/* Hero Section */}
                 <section className="hero">
                   <div className="container">
                     <h1 className="hero-title">
@@ -54,7 +46,6 @@ function App() {
                   </div>
                 </section>
 
-                {/* Features Section */}
                 <section className="features">
                   <div className="container">
                     <h2 className="features-title">
@@ -109,7 +100,6 @@ function App() {
                   </div>
                 </section>
 
-                {/* CTA Section */}
                 <section className="cta">
                   <div className="container">
                     <div className="cta-container">
@@ -127,10 +117,11 @@ function App() {
                 </section>
               </div>
             } />
+            <Route path="/gallery" element={<Gallery />} />
+            <Route path="/contact" element={<div>Contact Page Coming Soon</div>} />
           </Routes>
         </main>
 
-        {/* Footer */}
         <footer className="footer">
           <div className="container">
             <p>&copy; 2024 AI Photo Magic. All rights reserved.</p>
