@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 type GallerySection = 'background' | 'fantasy' | '3d';
@@ -123,6 +123,33 @@ const Gallery: React.FC = () => {
     const nextIndex = currentIndex < filteredItems.length - 1 ? currentIndex + 1 : 0;
     setSelectedImage(filteredItems[nextIndex]);
   };
+
+  // Add keyboard navigation
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (!selectedImage) return;
+
+      switch (e.key) {
+        case 'ArrowLeft':
+          handlePreviousImage();
+          break;
+        case 'ArrowRight':
+          handleNextImage();
+          break;
+        case 'Escape':
+          handleCloseLightbox();
+          break;
+      }
+    };
+
+    if (selectedImage) {
+      window.addEventListener('keydown', handleKeyDown);
+    }
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+    };
+  }, [selectedImage, handlePreviousImage, handleNextImage, handleCloseLightbox]);
 
   return (
     <div className="gallery-container">

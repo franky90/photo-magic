@@ -1,48 +1,25 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Navbar from './components/Navbar';
 import Gallery from './components/Gallery';
+import BeforeAfterSlider from './components/BeforeAfterSlider';
 import './App.css';
 
 function App() {
   return (
     <Router>
-      <div>
-        <header className="header">
-          <div className="container">
-            <nav className="nav">
-              <Link to="/" className="logo">
-                AI Photo Magic
-              </Link>
-              <div className="nav-links">
-                <Link to="/" className="nav-link">Home</Link>
-                <Link to="/gallery" className="nav-link">Gallery</Link>
-                <Link to="/contact" className="nav-link">Contact</Link>
-              </div>
-            </nav>
-          </div>
-        </header>
-
+      <div className="app">
+        <Navbar />
+        
         <main>
           <Routes>
+            <Route path="/gallery" element={<Gallery />} />
             <Route path="/" element={
-              <div>
+              <>
                 <section className="hero">
                   <div className="container">
-                    <h1 className="hero-title">
-                      Transform Your Photos into<br />
-                      Magical Moments & 3D Reality
-                    </h1>
-                    <p className="hero-description">
-                      Transform your photos into fantasy characters, change backgrounds instantly, or create stunning 3D-printed figures. Experience the magic of AI-powered transformations.
-                    </p>
-                    <div className="button-group">
-                      <Link to="/gallery" className="button button-primary">
-                        View Gallery
-                      </Link>
-                      <Link to="/contact" className="button button-secondary">
-                        Contact Us
-                      </Link>
-                    </div>
+                    <h1>Transform Your Photos with AI Magic</h1>
+                    <p>Experience the power of AI to transform your photos into stunning works of art.</p>
                   </div>
                 </section>
 
@@ -53,15 +30,12 @@ function App() {
                     </h2>
                     <div className="features-grid">
                       <div className="feature-card">
-                        <div className="before-after-container">
-                          <div className="before-image">
-                            <img src="/images/beach-before.jpg" alt="Original scene" />
-                          </div>
-                          <div className="after-image">
-                            <img src="/images/beach-after.jpg" alt="Transformed scene" />
-                          </div>
-                          <div className="slider-handle"></div>
-                        </div>
+                        <BeforeAfterSlider
+                          beforeImage="/images/beach-before.jpg"
+                          afterImage="/images/beach-after.jpg"
+                          beforeAlt="Original scene"
+                          afterAlt="Transformed scene"
+                        />
                         <h3 className="feature-title">Background Magic</h3>
                         <p className="feature-description">
                           Transport your photos to any location with our AI background transformation.
@@ -69,15 +43,12 @@ function App() {
                       </div>
 
                       <div className="feature-card">
-                        <div className="before-after-container">
-                          <div className="before-image">
-                            <img src="/images/character-before.jpg" alt="Original character" />
-                          </div>
-                          <div className="after-image">
-                            <img src="/images/character-after.jpg" alt="Transformed character" />
-                          </div>
-                          <div className="slider-handle"></div>
-                        </div>
+                        <BeforeAfterSlider
+                          beforeImage="/images/character-before.jpg"
+                          afterImage="/images/character-after.jpg"
+                          beforeAlt="Original character"
+                          afterAlt="Transformed character"
+                        />
                         <h3 className="feature-title">Fantasy Characters</h3>
                         <p className="feature-description">
                           Turn yourself into superheroes, fantasy characters, or anything you imagine.
@@ -99,34 +70,10 @@ function App() {
                     </div>
                   </div>
                 </section>
-
-                <section className="cta">
-                  <div className="container">
-                    <div className="cta-container">
-                      <h2 className="cta-title">Ready to Transform Your Photos?</h2>
-                      <p className="cta-description">
-                        Start your creative journey today and bring your imagination to life.
-                      </p>
-                      <div className="button-group">
-                        <Link to="/gallery" className="button button-primary">
-                          Get Started
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </section>
-              </div>
+              </>
             } />
-            <Route path="/gallery" element={<Gallery />} />
-            <Route path="/contact" element={<div>Contact Page Coming Soon</div>} />
           </Routes>
         </main>
-
-        <footer className="footer">
-          <div className="container">
-            <p>&copy; 2024 AI Photo Magic. All rights reserved.</p>
-          </div>
-        </footer>
       </div>
     </Router>
   );
